@@ -118,7 +118,10 @@ class ChartTest(unittest.TestCase):
         chart.buildhtml()
 
     def test_MultiBarChart_example(self):
-        ype = "multiBarChart"
+        # Open File for test
+        output_file = open('test_multiBarChart_date.html', 'w')
+
+        type = "multiBarChart"
 
         chart = multiBarChart(name=type, height=350, x_is_date=True)
         chart.set_containerheader("\n\n<h2>" + type + "</h2>\n\n")
@@ -140,6 +143,8 @@ class ChartTest(unittest.TestCase):
                        "date_format": tooltip_date}
         chart.add_serie(name="Duration", y=ydata2, x=xdata, extra=extra_serie)
         chart.buildhtml()
+
+        output_file.write(chart.htmlcontent)
 
 
     def test_multiBarHorizontalChart(self):
